@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+        mysql:
+                image: mysql:5.7
+                volumes:
+                        - "/tmp/mysqldb:/var/lib/mysql"
+                environment:
+                        - MYSQL_USER=thuongnn
+                        - MYSQL_PASSWORD=098poiA#
+                        - MYSQL_DATABASE=rest_api
+                        - MYSQL_ROOT_PASSWORD=098poiA#
+                ports:
+                - 3306
+
+        golang:
+                build:
+                        context: .
+                        dockerfile: Dockerfile
+                depends_on:
+                - mysql
+                ports:
+                - "8083:8080"
